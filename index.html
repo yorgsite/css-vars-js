@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>css vars demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="CssVars.js"></script>
+		<script>
+			const nbdivs=10;
+			let cssVarList=[];
+
+			window.addEventListener('load',()=>{
+				createSamples();
+				createVars();
+				linkInputs();
+			});
+
+			let createSamples=()=>{
+				// adds some test divs do the document
+				const divs=document.querySelector('.divs');
+				for(let i=0;i<nbdivs;i++){
+					divs.appendChild(document.createElement('div'));
+				}
+			};
+			let createVars=()=>{
+				// create cssvars for odd divs
+				cssVarList.push(new CssVars('.divs>div:nth-child(odd)',{
+					background:'#ff0000',
+					height:'100px'
+				}).importVars(1));
+
+				// create cssvars for even divs
+				cssVarList.push(new CssVars('.divs>div:nth-child(even)',{
+					background:'#aaa',
+					height:'100px'
+				}).importVars(1));
+			};
+			let linkInputs=()=>{
+				// links odd vars with inputs
+				linkColor('.form:first-child input[type=color]',0,'background');
+				linkNumber('.form:first-child input[type=number]',0,'height');
+
+				// links even vars with inputs
+				linkColor('.form+.form input[type=color]',1,'background');
+				linkNumber('.form+.form input[type=number]',1,'height');
+				
+				// links imported var "border" from '.divs>div' rule.
+				// NB: id could eather be 0 or 1 since cssVarList instances shares the same parent selector for '--border' declaration.
+				linkNumber('.both input[type=number]',1,'border');
+			};
+
+			let changeValue=(id,name,value)=>{
+				// sets value to proxy
+				cssVarList[id].vars[name]=value;
+			};
+			let linkColor=(selector,id,name)=>{
+				let dom=document.querySelector(selector);
+				dom.addEventListener('change',evt=>changeValue(id,name,evt.target.value));
+				dom.value=cssVarList[id].vars[name];// gets value from proxy
+			};
+			let linkNumber=(selector,id,name)=>{
+				let dom=document.querySelector(selector);
+				dom.addEventListener('change',evt=>changeValue(id,name,evt.target.value+'px'));
+				dom.value=parseInt(cssVarList[id].vars[name]);// gets value from proxy
+			};
+		</script>
+		<style>
+			.form{
+				display: inline-block;
+				padding: 3px;
+				background-color: #eee;
+				margin: 3px;
+			}
+			.divs>div{
+				--border:5px;
+				display: inline-block;
+				background-color: var(--background);
+				border: solid var(--border);
+				width: 100px;
+				height: var(--height);
+				margin: 1px;
+				vertical-align: middle;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="form">
+			<div>
+				odd divs
+			</div>
+			<div>
+				background : <input type="color" />
+			</div>
+			<div>
+				height : <input min="10" type="number" />
+			</div>
+		</div>
+		<div class="form">
+			<div>
+				even divs
+			</div>
+			<div>
+				background : <input type="color" />
+			</div>
+			<div>
+				height : <input min="10" type="number" />
+			</div>
+		</div>
+		<div class="both">
+			border (shared) : <input min="0" type="number" />
+		</div>
+		<div class="divs"></div>
+	</body>
+
+</html>
