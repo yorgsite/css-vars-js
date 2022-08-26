@@ -38,12 +38,12 @@ js
 ``` javascript
 import {CssVars} from 'css-vars-js';
 
-// targets only targeted rule odd elements
+// targets only declared rule odd elements
 let varz=new CssVars('.divs>div:nth-child(odd)',{
 	background:'#ff0000',// create --background var
 	height:'100px'// create --height var
 })
-// imports border vars
+// imports "border" var
 .importVars(1);
 
 let prop=varz.vars.background; // get --background current value for odd divs
