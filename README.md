@@ -15,6 +15,11 @@ Install
 npm install css-vars-js
 ```
 
+import in web page
+``` html
+<script src="path/to/css-vars-js/CssVars.js"></script>
+```
+
 <u>Exemple:</u>
 
 css
@@ -46,11 +51,6 @@ let prop=varz.vars.background; // get --background current value for odd divs
 varz.vars.background='#00ff00'; // change --background value for odd divs
 
 varz.vars.border=5+'px'; // change --border value for odd and even divs
-```
-
-import in web page
-``` html
-<script src="path/to/css-vars-js/CssVars.js"></script>
 ```
 
 
