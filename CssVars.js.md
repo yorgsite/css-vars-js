@@ -5,18 +5,19 @@
 <hr/>
  
 + `class` [CssVars](#tgt_CssVars)
-  + `Proxy` [vars](#tgt_vars)
-  + `Record<string,string>[]` [vars](#tgt_vars)
-  + `string[]` [ownVarNames](#tgt_ownVarNames)
-  + `string[]` [varNames](#tgt_varNames)
-  + `Record<string,string>[]` [ownVarsObj](#tgt_ownVarsObj)
-  + `Record<string,string>[]` [varsObj](#tgt_varsObj)
-  + `method` [getVar](#tgt_getVar)
-  + `method` [setVar](#tgt_setVar)
-  + `method` [importVars](#tgt_importVars)
-  + `method` [delete](#tgt_delete)
-  + `method` [clear](#tgt_clear)
-  + `method` [destroy](#tgt_destroy)
+  + getter [vars](#tgt_vars)
+  + setter [vars](#tgt_vars)
+  + getter [ownVarNames](#tgt_ownVarNames)
+  + getter [varNames](#tgt_varNames)
+  + getter [ownVarsObj](#tgt_ownVarsObj)
+  + getter [varsObj](#tgt_varsObj)
+  + method [getVar](#tgt_getVar)
+  + method [setVar](#tgt_setVar)
+  + method [importVars](#tgt_importVars)
+  + method [kickDown](#tgt_kickDown)
+  + method [delete](#tgt_delete)
+  + method [clear](#tgt_clear)
+  + method [destroy](#tgt_destroy)
  
 <hr/>
  
@@ -44,7 +45,7 @@ let varz=new CssVars('.divs>div:nth-child(odd)',{
 + param `Record<string,string>[]` **vars**  initial css var set
  
 + param `string` **prefix** ] style property var prefix (default='--')<br/>
-You can set to '' if you want to handle the prefix yourself (not recommended).
+You can set to '' if you want to handle the prefix yourself.
 <hr/>
  
 ### <a name="tgt_vars"></a> getter `Proxy` **vars** 
@@ -136,6 +137,14 @@ if `boolean` scan parent selectors to the bottom
 + param `boolean` **override**  (default=false)<br/>
 Override imported css vars locally if **true**.<br/>
 If **false**, imported css vars will override yours.
+ 
++ return `CssVars` 
+<hr/>
+ 
+### <a name="tgt_kickDown"></a> method **kickDown**
+ 
+Overrides children rules vars.<br/>
+If required, **importVars** should be called before
  
 + return `CssVars` 
 <hr/>

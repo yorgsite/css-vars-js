@@ -2,13 +2,18 @@
 
 # css-vars-js
 
-#### A css vars js/ts handler.</br>
+#### A css custom properties js/ts handler.</br>
 
-About [css vars](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
+What are [css custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) ?
 
 + Scope limited to selector (and optionnaly selector parents).
 + Simple interaction with css vars via proxy.
 + Existing css vars importation.
+
+Install
+```
+npm install css-vars-js
+```
 
 <u>Exemple:</u>
 
@@ -23,8 +28,11 @@ css
 }
 
 ```
+
 js
 ``` javascript
+import {CssVars} from 'css-vars-js';
+
 // targets only targeted rule odd elements
 let varz=new CssVars('.divs>div:nth-child(odd)',{
 	background:'#ff0000',// create --background var
@@ -40,11 +48,18 @@ varz.vars.background='#00ff00'; // change --background value for odd divs
 varz.vars.border=5+'px'; // change --border value for odd and even divs
 ```
 
+import in web page
+``` html
+<script src="path/to/css-vars-js/CssVars.js"></script>
+```
+
+
+
 <hr/>
 
 
 <u>Learn more :</u>
 
 + CssVars **[API](CssVars.js.md)** documentation.
-
-+ Use exemple : **[CssVars demo](index.html)**.
++ **[CssVars demo](https://yorgsite.github.io/css-vars-js/)**
++ **[demo source](index.html)**.

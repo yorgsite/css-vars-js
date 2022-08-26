@@ -16,13 +16,15 @@
 				linkInputs();
 			});
 
+			// adds some test divs do the document
 			let createSamples=()=>{
-				// adds some test divs do the document
 				const divs=document.querySelector('.divs');
 				for(let i=0;i<nbdivs;i++){
 					divs.appendChild(document.createElement('div'));
 				}
 			};
+
+			// create 2 CssVars instances to separate odd and even divs
 			let createVars=()=>{
 				// create cssvars for odd divs
 				cssVarList.push(new CssVars('.divs>div:nth-child(odd)',{
@@ -36,6 +38,8 @@
 					height:'100px'
 				}).importVars(1));
 			};
+
+			// link controls
 			let linkInputs=()=>{
 				// links odd vars with inputs
 				linkColor('.form:first-child input[type=color]',0,'background');
@@ -50,10 +54,12 @@
 				linkNumber('.both input[type=number]',1,'border');
 			};
 
+			// change value  on input event
 			let changeValue=(id,name,value)=>{
 				// sets value to proxy
 				cssVarList[id].vars[name]=value;
 			};
+			
 			let linkColor=(selector,id,name)=>{
 				let dom=document.querySelector(selector);
 				dom.addEventListener('change',evt=>changeValue(id,name,evt.target.value));
