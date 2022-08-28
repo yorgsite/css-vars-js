@@ -136,7 +136,7 @@ if `boolean` scan parent selectors to the bottom
  
 + param `boolean` **override**  (default=false)<br/>
 Override imported css vars locally if **true**.<br/>
-If **false**, imported css vars will override yours.
+If **false**, deeper imported css vars will override yours.
  
 + return `CssVars` 
 <hr/>
@@ -144,7 +144,8 @@ If **false**, imported css vars will override yours.
 ### <a name="tgt_kickDown"></a> method **kickDown**
  
 Overrides children rules vars.<br/>
-If required, **importVars** should be called before
+If required, **importVars** should be called before.<br/>
+Does not work o, shadow dom
  
 + return `CssVars` 
 <hr/>

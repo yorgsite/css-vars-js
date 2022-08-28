@@ -197,7 +197,7 @@ const CssVars=(function(){
 			// console.log('importVars',vars);
 		}
 		kickDown(){
-			console.log('kickDown');
+			// console.log('kickDown');
 			CV.getChildrenRules(this._selector);
 		}
 
@@ -376,7 +376,7 @@ const CssVars=(function(){
 		if `boolean` scan parent selectors to the bottom
 		* @param {boolean} override (default=false)
 		Override imported css vars locally if **true**.
-		If **false**, imported css vars will override yours.
+		If **false**, deeper imported css vars will override yours.
 		* @return {CssVars}
 		*/
 		importVars(recursive=true){
@@ -385,7 +385,8 @@ const CssVars=(function(){
 		}
 		/**
 		* Overrides children rules vars.
-		* If required, **importVars** should be called before
+		* If required, **importVars** should be called before.
+		* Does not work o, shadow dom
 		* @return {CssVars}
 		*/
 		kickDown(){
