@@ -20,6 +20,11 @@ import in web page
 <script src="path/to/css-vars-js/CssVars.js"></script>
 ```
 
+import in Node
+``` html
+import {CssVars} from 'css-vars-js';
+```
+
 <u>Exemple:</u>
 
 css
@@ -36,9 +41,9 @@ css
 
 js
 ``` javascript
-import {CssVars} from 'css-vars-js';
+// import ... ;
 
-// targets only declared rule odd elements
+// targets only '.divs>div' rule odd elements
 let varz=new CssVars('.divs>div:nth-child(odd)',{
 	background:'#ff0000',// create --background var
 	height:'100px'// create --height var
@@ -51,6 +56,27 @@ let prop=varz.vars.background; // get --background current value for odd divs
 varz.vars.background='#00ff00'; // change --background value for odd divs
 
 varz.vars.border=5+'px'; // change --border value for odd and even divs
+```
+
+
+Do some theming :
+``` javascript
+// import ... ;
+const themes={
+	"A":{
+		background:'#ff0000',
+		height:'100px'
+	},
+	"B":{
+		background:'#00ff00',
+		height:'50px'
+	}
+};
+
+// targets only declared rule odd elements
+let varz=new CssVars('.divs>div:nth-child(odd)',themes.A);
+
+varz.vars=themes.B;// change theme
 ```
 
 

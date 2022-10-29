@@ -187,7 +187,7 @@ const CssVars=(function(){
 						let cv=new CssVar(rul,rul.style[i]);
 						let key=this._prefix?cv.name:cv.prop;
 						if(this._varsio[key]&&!override){
-							this.delete(prop);
+							this.delete(key);
 						}
 						// vars.push(cv);
 						this._varsio[key]=cv;
@@ -224,7 +224,7 @@ const CssVars=(function(){
 			if(prop instanceof Array){
 				this.delete(prop);
 			}else{
-				this.style.removeProperty(this._prefix+prop);
+				this.rule.style.removeProperty(this._prefix+prop);
 				if(this._varsio.hasOwnProperty(prop)){
 					delete this._varsio[prop];
 				}
