@@ -176,19 +176,22 @@ const CssVars=(function(){
 			});
 			return obj;
 		}
-		importVars(recursive=true,override=false){
+		importVars(recursive=true,noOverride=false){
+			// this.rule=rule;
+			// this.prop=prop;
+			// this.name=prop.substr(2);
 			// let vars=[];
 			let rules=CV.getRulesRecursive(this._selector,recursive);
 			rules.forEach(rul=>{
 				for(let i=0;i<rul.style.length;i++){
 					if(rul.style[i].indexOf('--')===0){
-						let cv=new CssVar(rul,rul.style[i]);
-						let key=this._prefix?cv.name:cv.prop;
-						if(this._varsio[key]&&!override){
+						let key=rul.style[i].slice(this._prefix.length);
+						if(!this._varsio[key]){
+							this._varsio[key]=new CssVar(rul,rul.style[i]);
+						}else if(noOverride){
 							this.delete(key);
+							this._varsio[key]=new CssVar(rul,rul.style[i]);
 						}
-						// vars.push(cv);
-						this._varsio[key]=cv;
 					}
 				}
 			});
@@ -370,13 +373,14 @@ const CssVars=(function(){
 		Import vars from parent rules when true or >0.
 		if `number` scan parent selectors **recursive** steps back.
 		if `boolean` scan parent selectors to the bottom
-		* @param {boolean} override (default=false)
-		Override imported css vars locally if **true**.
-		If **false**, deeper imported css vars will override yours.
+		* @param {boolean} noOverride (default=false)
+		Override imported css vars if **false**. Consider your **vars** settings default values.
+		If **true**, deeper imported css vars will override yours.
+		
 		* @return {CssVars}
 		*/
-		importVars(recursive=true){
-			this._priv.importVars(recursive);
+		importVars(recursive=true,noOverride=false){
+			this._priv.importVars(recursive,noOverride);
 			return this;
 		}
 		/**

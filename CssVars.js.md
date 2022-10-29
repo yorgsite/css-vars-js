@@ -134,9 +134,9 @@ Import vars from parent rules when true or >0.<br/>
 if `number` scan parent selectors **recursive** steps back.<br/>
 if `boolean` scan parent selectors to the bottom
  
-+ param `boolean` **override**  (default=false)<br/>
-Override imported css vars locally if **true**.<br/>
-If **false**, deeper imported css vars will override yours.
++ param `boolean` **noOverride**  (default=false)<br/>
+Override imported css vars if **false**. Consider your **vars** settings default values.<br/>
+If **true**, deeper imported css vars will override yours.
  
 + return `CssVars` 
 <hr/>
