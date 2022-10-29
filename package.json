@@ -1,6 +1,6 @@
 {
   "name": "css-vars-js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A css vars js/ts handler.",
   "main": "index.js",
   "scripts": {
