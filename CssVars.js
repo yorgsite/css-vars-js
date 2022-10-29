@@ -26,7 +26,6 @@ const CssVars=(function(){
 				let rules=ssl[i].cssRules;
 				for(let j=0;j<rules.length;j++){
 					let sel=rules[j].selectorText.split(' > ').join('>');
-					console.log('sel=',sel);
 					if (filter(selector,sel)) {
 						result.push(rules[j]);
 					}
@@ -36,7 +35,6 @@ const CssVars=(function(){
 		}
 		getChildrenRules(selector){
 			let result=this.getRules(selector,(s,v)=>v.indexOf(s)===0);
-			console.log('result=',result);
 			return result;
 		}
 		getRulesRecursive(selector,levels){
@@ -194,10 +192,8 @@ const CssVars=(function(){
 					}
 				}
 			});
-			// console.log('importVars',vars);
 		}
 		kickDown(){
-			// console.log('kickDown');
 			CV.getChildrenRules(this._selector);
 		}
 
